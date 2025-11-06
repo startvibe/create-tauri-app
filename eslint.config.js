@@ -80,7 +80,7 @@ export default [
       'no-var': 'error',
       'prefer-const': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'no-console': 'warn',
+      'no-console': 'off',
       'prefer-arrow-callback': 'error',
       'arrow-spacing': 'error',
       'object-shorthand': 'error',
