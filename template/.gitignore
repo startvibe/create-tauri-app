@@ -7,18 +7,127 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production builds
+dist/
+dist-ssr/
+build/
+target/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
 
 # Editor directories and files
-.idea
-.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
 
-.react-router
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Tauri specific
+src-tauri/target/
+src-tauri/Cargo.lock
+
+# Rust specific
+**/*.rs.bk
+Cargo.lock
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional cache directories
+.npm
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.cache
+.parcel-cache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of package managers
+*.tgz
+.yarn-integrity
+package-lock.json
+yarn.lock
+
+# Framework build outputs
+.next
+.nuxt
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Local development files
+.env.*.local
+*.bak
+*.backup
+*.old
+
+# React Router generated files
+.react-router/
+
+# Application binaries
+# Windows
+*.exe
+*.msi
+*.msix
+*.appx
+# macOS
+*.dmg
+*.pkg
+*.app
+# Linux
+*.deb
+*.rpm
+*.AppImage
+*.snap
+
+# Debug files
+debug.log*
+error.log*
+
+# Claude Code local settings
+**/settings.local.json
+.playwright-mcp
