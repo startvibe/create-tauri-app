@@ -19,3 +19,5 @@ coverage
 *.swo
 *~
 **/target/**
+template/src-tauri/gen/
+template/src-tauri/target/
