@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/startvibe/create-tauri-app/compare/v1.1.0...v1.1.2) (2025-11-15)
+
+### Chores
+
+- 更新 prettier 忽略规则 ([839e755](https://github.com/startvibe/create-tauri-app/commit/839e755af893340efc900c10bc82af49c76f22ac))
+- 更新作者信息和仓库地址 ([078f9ae](https://github.com/startvibe/create-tauri-app/commit/078f9aed5e640eb8dfcc84d9c04d132b0ffc4616))
+
 ## 1.1.0 (2025-11-06)
 
 ### Features
