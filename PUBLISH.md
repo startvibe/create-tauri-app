@@ -57,10 +57,10 @@ npm publish --access public
 
 ```bash
 # 使用 pnpm create
-pnpm create @anypond/create-tauri-app my-app
+pnpm create @startvibe/create-tauri-app my-app
 
 # 使用 npx
-npx @anypond/create-tauri-app my-app
+npx @startvibe/create-tauri-app my-app
 
 # 或使用命令行工具
 create-tauri-app my-app

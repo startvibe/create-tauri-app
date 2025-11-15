@@ -1,4 +1,4 @@
-# @anypond/create-tauri-app - Tauri 2 + React + TypeScript App Creator
+# @startvibe/create-tauri-app - Tauri 2 + React + TypeScript App Creator
 
 一个用于创建 Tauri 2 桌面应用程序的命令行工具，提供开箱即用的开发模板。
 
@@ -26,17 +26,17 @@
 
 ```bash
 # 全局安装模板创建工具
-npm install -g @anypond/create-tauri-app
+npm install -g @startvibe/create-tauri-app
 
 # 或使用 npx
-npx @anypond/create-tauri-app
+npx @startvibe/create-tauri-app
 ```
 
 ### 直接使用（推荐）
 
 ```bash
 # 克隆仓库
-git clone https://github.com/anypond/create-tauri-app.git
+git clone https://github.com/startvibe/create-tauri-app.git
 cd create-tauri-app
 
 # 安装依赖
@@ -127,7 +127,7 @@ pnpm commit
 ## 📁 项目结构
 
 ```
-@anypond/create-tauri-app/
+@startvibe/create-tauri-app/
 ├── create.js              # 主创建脚本
 ├── package.json           # 工具项目配置
 ├── eslint.config.js       # ESLint 配置（支持主项目和模板）
