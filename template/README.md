@@ -1,6 +1,6 @@
-# Tauri 2 + React + TypeScript Template
+# Tauri 2 + Next.js 16 + React 19 + TypeScript Template
 
-现代化的桌面应用开发模板，基于"开箱即用"和"最佳实践"的设计理念构建。
+现代化的桌面应用开发模板，基于 Next.js 16 App Router 架构和 MCP 驱动开发方法，遵循"开箱即用"和"最佳实践"的设计理念构建。
 
 ## 🎯 设计理念
 
@@ -8,32 +8,37 @@
 
 1. **开箱即用** - 包含所有必要的配置和工具，克隆后即可开始开发
 2. **最佳实践** - 集成了业界公认的最佳实践工具和流程
-3. **开发体验优先** - 优化开发者的日常使用体验
-4. **自动化** - 自动化代码检查、格式化和提交规范
-5. **可维护性** - 清晰的项目结构和文档
+3. **MCP 驱动开发** - 强制执行文档研究和自动化测试的开发流程
+4. **Next.js App Router** - 使用最新的 Next.js 16 架构和静态导出模式
+5. **开发体验优先** - 优化开发者的日常使用体验
+6. **自动化** - 自动化代码检查、格式化和提交规范
+7. **可维护性** - 清晰的项目结构和文档
 
 ## ✨ 特性
 
 - 🚀 **Tauri 2** - 轻量级、安全的桌面应用框架
-- ⚛️ **React 19** - 最新的 React 框架
-- 📝 **TypeScript** - 类型安全的 JavaScript
+- ⚛️ **Next.js 16** - 最新的 React 全栈框架，App Router 架构
+- 🎯 **React 19** - 最新的 React 框架
+- 📝 **TypeScript 5.8.3+** - 类型安全的 JavaScript
 - 🎨 **Tailwind CSS v3** - 成熟的 CSS 框架，完全兼容 macOS Big Sur
 - 🌙 **深色模式** - 基于 DaisyUI 5.x 的主题切换功能
 - 🧩 **DaisyUI 5.x** - 美观的 UI 组件库
-- 🔧 **Vite** - 快速的构建工具
 - 📦 **pnpm** - 高效的包管理器
 - ✅ **ESLint + Prettier** - 代码质量和格式化
 - 📝 **Conventional Commits** - 规范的提交信息（支持 emoji）
 - 🔒 **Git Hooks** - 自动化的代码检查
 - 🤖 **Claude Code MCP** - 项目级别的 AI 辅助开发配置
+- 📚 **MCP 驱动开发** - 强制执行 Context7 文档研究和 Playwright 自动化测试
+- 🗂️ **Next.js App Router** - 现代化的路由系统和静态导出
+- 📖 **SDD 开发方法** - 规格驱动的开发流程
 
 ## 🛠️ 技术栈
 
 ### 前端
 
+- **Next.js 16.0.3** - React 全栈框架，App Router 架构
 - **React 19.1.0** - UI 框架
 - **TypeScript 5.8.3** - 类型系统
-- **Vite 7.0.4** - 构建工具
 - **Tailwind CSS 3.4.17** - CSS 框架
 - **DaisyUI 5.x** - UI 组件库
 - **Lucide React** - 图标库
@@ -72,32 +77,73 @@ pnpm tauri build
 ## 📁 项目结构
 
 ```
-├── src/                    # React 前端源码
-│   ├── components/         # 组件目录
-│   │   └── ui/            # UI 基础组件
-│   ├── lib/               # 工具函数
-│   ├── App.tsx            # 主应用组件
-│   ├── main.tsx           # 应用入口
-│   └── index.css          # 全局样式
+template/
+├── src/                    # Next.js App Router 源代码根目录
+│   ├── app/               # Next.js App Router（强制）
+│   │   ├── layout.tsx     # 根布局
+│   │   ├── page.tsx       # 首页
+│   │   ├── loading.tsx    # 加载状态
+│   │   ├── error.tsx      # 错误边界
+│   │   ├── not-found.tsx  # 404 页面
+│   │   ├── globals.css    # 全局样式
+│   │   └── [slug]/        # 动态路由页面
+│   │       ├── page.tsx
+│   │       └── layout.tsx
+│   ├── components/        # 可复用组件
+│   │   └── ui/           # UI 组件库
+│   ├── lib/              # 工具函数和配置
+│   ├── hooks/            # 自定义 React Hooks
+│   ├── types/            # TypeScript 类型定义
+│   └── styles/           # 全局样式文件
 ├── src-tauri/             # Tauri 后端源码
 │   ├── src/               # Rust 源码
-│   ├── capabilities/       # Tauri 能力配置
+│   │   └── main.rs       # 主入口
+│   ├── capabilities/       # Tauri 权限配置
 │   ├── icons/             # 应用图标
 │   └── tauri.conf.json    # Tauri 配置
-├── .husky/                # Git hooks（自动安装）
-├── .vscode/                # VS Code 配置
-├── .mcp.json              # Claude Code MCP 配置
-├── COMMIT_GUIDE.md        # Git 提交规范
-├── package.json           # 项目配置
-└── dist/                  # 构建输出
+├── public/               # 静态资源（图片、字体等）
+├── out/                  # Next.js 静态导出输出目录
+├── docs/                 # 项目文档
+├── .husky/               # Git hooks（自动安装）
+├── .vscode/              # VS Code 配置
+├── .specify/             # Spec-kit 配置和文档
+│   └── memory/           # 项目记忆和宪法
+├── .mcp.json             # Claude Code MCP 配置
+├── next.config.mjs       # Next.js 配置（项目根）
+├── tailwind.config.js    # Tailwind CSS 配置
+├── tsconfig.json         # TypeScript 配置
+└── package.json          # 项目配置和依赖
 ```
 
 ### 设计考虑
 
-1. **扁平结构** - 避免过深的嵌套目录，提高可读性
+1. **Next.js App Router 结构** - 遵循 Next.js 16 最新的 App Router 约定
 2. **职责分离** - 前后端代码明确分离，便于团队协作
-3. **配置集中** - 所有配置文件放在根目录，便于维护
-4. **文档驱动** - 完善的文档系统，包括 SOP 和设计说明
+3. **静态导出优化** - 针对 Tauri 桌面应用的静态文件生成
+4. **配置集中** - 所有配置文件放在根目录，便于维护
+5. **MCP 驱动** - 完整的 AI 辅助开发工作流集成
+6. **文档驱动** - 完善的文档系统，包括宪法和开发指南
+
+### Next.js App Router 文件约定
+
+**特殊文件优先级**（从高到低）：
+
+1. `layout.tsx` - 布局组件，定义共享 UI
+2. `page.tsx` - 页面组件，定义具体页面内容
+3. `loading.tsx` - 加载状态，React Suspense 边界
+4. `error.tsx` - 错误边界，处理运行时错误
+5. `not-found.tsx` - 404 页面，处理未找到路由
+
+**组件分类**：
+
+- **服务器组件**：默认，用于数据获取和静态内容
+- **客户端组件**：使用 `'use client'` 指令，用于交互性功能
+
+**Tauri 集成要点**：
+
+- Tauri 命令通过 `@tauri-apps/api/core` 调用
+- 桌面应用特有功能保持不变
+- Next.js 路由与 Tauri 窗口管理协同工作
 
 ## 🏗️ 架构设计
 
@@ -105,16 +151,16 @@ pnpm tauri build
 
 #### 前端技术栈
 
+- **Next.js 16** - 最新的 React 全栈框架，App Router 提供现代化路由系统
 - **React 19** - 最新的 React 版本，提供最佳的性能和开发体验
-- **TypeScript** - 提供类型安全，减少运行时错误
-- **Vite** - 极快的构建速度和开发服务器热更新
+- **TypeScript 5.8.3+** - 提供类型安全，减少运行时错误
 - **Tailwind CSS v3** - 成熟稳定的 CSS 框架，完全兼容旧系统
 - **DaisyUI 5.x** - 美观、易用的 UI 组件库，遵循最新规范
 
 #### 后端技术栈
 
 - **Tauri 2** - 轻量、安全的桌面应用框架，比 Electron 更节省资源
-- **Rust** - 系统级编程语言，提供内存安全和极致性能
+- **Rust 1.89.0+** - 系统级编程语言，提供内存安全和极致性能
 
 #### 开发工具
 
@@ -122,6 +168,7 @@ pnpm tauri build
 - **ESLint + Prettier** - 代码质量和格式化的黄金组合
 - **Husky + lint-staged** - 自动化的 Git hooks
 - **Commitizen + commitlint** - 规范化的提交信息管理
+- **MCP 服务器** - Context7 文档研究 + Playwright 自动化测试
 
 ## 🎨 样式系统
 
@@ -176,7 +223,65 @@ pnpm tauri build
 </div>
 ```
 
-## 🔧 Tauri 命令
+## 🔧 Next.js + Tauri 2.0 集成
+
+### 静态导出配置（强制）
+
+**Next.js 配置要求**：
+
+```javascript
+// next.config.mjs
+const isProd = process.env.NODE_ENV === 'production'
+const internalHost = process.env.TAURI_DEV_HOST || 'localhost'
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export', // 强制静态导出，禁用 SSR
+  images: {
+    unoptimized: true, // 禁用图片优化适配静态导出
+  },
+  assetPrefix: isProd ? undefined : `http://${internalHost}:3000`,
+}
+
+export default nextConfig
+```
+
+**Tauri 配置要求**：
+
+```json
+// src-tauri/tauri.conf.json
+{
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../out"
+  }
+}
+```
+
+**Package.json 脚本要求**：
+
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "tauri": "tauri"
+  }
+}
+```
+
+### App Router 特殊限制
+
+- 所有页面必须预渲染，不支持动态服务端功能
+- 路由处理完全在客户端进行
+- API Routes 不支持（Tauri 环境下）
+- 必须使用 React Server Components 的静态特性
+
+### Tauri 命令
 
 ### 定义 Rust 命令
 
@@ -197,15 +302,33 @@ fn greet(name: &str) -> String {
 .invoke_handler(tauri::generate_handler![greet])
 ```
 
-### 调用命令
+### 调用命令（客户端组件）
 
-在 React 中调用 Rust 命令：
+在 Next.js 客户端组件中调用 Rust 命令：
 
 ```typescript
-import { invoke } from '@tauri-apps/api/core'
+'use client'
 
-const result = await invoke('greet', { name: 'World' })
+import { invoke } from '@tauri-apps/api/core'
+import { useState, useEffect } from 'react'
+
+export default function GreetingComponent() {
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    invoke('greet', { name: 'Next.js + Tauri' })
+      .then(setMessage)
+  }, [])
+
+  return <div>{message}</div>
+}
 ```
+
+**重要提示**：
+
+- 服务器组件无法直接调用 Tauri 命令
+- 对 Tauri 交互使用客户端组件
+- 服务器组件用于静态内容和数据获取
 
 ## 🌙 主题系统
 
@@ -446,6 +569,42 @@ Git hooks 会在 `pnpm install` 时自动安装，无需手动配置。
 - **Commitizen** - Conventional Commits 支持
 - **Git Graph** - Git 可视化操作
 
+## 🔄 MCP 驱动开发工作流
+
+### 开发周期（强制执行）
+
+**第一阶段 - 研究（Context7 MCP）**：
+在实施任何代码更改之前，必须使用 Context7 MCP 研究相关文档：
+
+```bash
+# 使用 Context7 MCP 研究相关库和框架
+# mcp__context7__resolve-library-id + mcp__context7__get-library-docs
+```
+
+**第二阶段 - 实施**：
+基于文档研究和既定模式进行编码，遵循技术栈标准
+
+**第三阶段 - 验证（Playwright MCP）**：
+完成任何网页相关更改后，必须使用 Playwright MCP 验证实现：
+
+```bash
+# 启动开发服务器
+pnpm tauri dev
+
+# 使用 Playwright MCP 测试前端功能
+# mcp__playwright__browser_* 工具进行浏览器自动化测试
+```
+
+**第四阶段 - 文档**：
+更新相关文档，添加中文注释，确保知识传承
+
+### 质量门控
+
+- 所有代码更改必须通过 `pnpm lint` 和 `pnpm format:check` 验证
+- 功能开发前必须完成 Context7 MCP 文档研究
+- 功能完成后必须通过 Playwright MCP 自动化测试
+- MCP 服务器（Playwright、Context7）必须配置并正常工作
+
 ## 🔄 开发工作流
 
 ### 1. 环境准备
@@ -465,7 +624,23 @@ pnpm tauri dev
 # 享受实时热更新和类型检查
 ```
 
-### 3. 代码提交
+### 3. MCP 驱动开发
+
+```bash
+# 第一步：研究阶段
+# 使用 Context7 MCP 研究相关文档
+
+# 第二步：实施阶段
+# 基于文档研究进行编码
+
+# 第三步：验证阶段
+# 使用 Playwright MCP 测试功能
+
+# 第四步：文档阶段
+# 更新相关文档
+```
+
+### 4. 代码提交
 
 ```bash
 # 暂存更改
@@ -478,7 +653,7 @@ pnpm commit
 git commit -m "✨feat: add new feature"
 ```
 
-### 4. 版本发布
+### 5. 版本发布
 
 ```bash
 # 自动生成版本号和更新日志

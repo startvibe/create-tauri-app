@@ -4,28 +4,81 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Tauri 2 + React + TypeScript template project designed to serve as a foundation for multiple desktop applications. The project features a flat structure for simplicity and includes comprehensive code quality tools and Git commit conventions.
+This is a Tauri 2 + Next.js 16 + React 19 + TypeScript template project designed to serve as a foundation for multiple desktop applications. The project uses Next.js App Router architecture with static export configuration for Tauri compatibility and follows MCP-driven development methodology.
+
+## Architecture Overview
+
+### Frontend (Next.js 16 + React 19 + TypeScript)
+
+- **Framework**: Next.js 16.0.3 with App Router architecture
+- **React Version**: React 19.1.1 with TypeScript 5.8.3
+- **Build Tool**: Next.js built-in build system with static export (`output: 'export'`)
+- **Location**: `src/`
+- **Entry Point**: `src/app/layout.tsx` → `src/app/page.tsx`
+- **Styling**: Tailwind CSS v3 with daisyUI component library in `src/app/globals.css`
+- **UI Components**: daisyUI - pre-built components with semantic class names
+- **Theme System**: Built-in dark/light mode with daisyUI theme system
+- **Routing**: Next.js App Router with static pre-rendering
+
+### Static Export Configuration
+
+**Critical for Tauri compatibility**: Next.js is configured for static export mode:
+
+```javascript
+// next.config.mjs
+const nextConfig = {
+  output: 'export', // 强制静态导出，禁用 SSR
+  images: {
+    unoptimized: true, // 禁用图片优化适配静态导出
+  },
+  assetPrefix: isProd ? undefined : `http://${internalHost}:3000`,
+}
+```
+
+**App Router Special Limitations**:
+
+- All pages must be pre-rendered, no dynamic server-side functionality
+- Routing is completely client-side
+- API Routes are not supported in Tauri environment
+- Must use React Server Components' static特性
 
 ## Project Structure
 
 ```
 [project-name]/
-├── src/                    # React frontend source code
-│   ├── components/         # Reusable React components
-│   │   └── theme-toggle.tsx # Theme switching component
-│   └── assets/            # Static assets
+├── src/                    # Next.js App Router source code
+│   ├── app/               # Next.js App Router (强制)
+│   │   ├── layout.tsx     # 根布局
+│   │   ├── page.tsx       # 首页
+│   │   ├── loading.tsx    # 加载状态
+│   │   ├── error.tsx      # 错误边界
+│   │   ├── not-found.tsx  # 404 页面
+│   │   ├── globals.css    # 全局样式
+│   │   └── [slug]/        # 动态路由页面
+│   │       ├── page.tsx
+│   │       └── layout.tsx
+│   ├── components/        # 可复用组件
+│   │   └── ui/           # UI 组件库
+│   │       └── theme-toggle.tsx # 主题切换组件
+│   ├── lib/              # 工具函数和配置
+│   ├── hooks/            # 自定义 React Hooks
+│   ├── types/            # TypeScript 类型定义
+│   └── styles/           # 全局样式文件
 ├── src-tauri/              # Tauri backend (Rust)
 │   ├── src/               # Rust source code
-│   ├── capabilities/       # Tauri capabilities
+│   │   └── main.rs       # 主入口
+│   ├── capabilities/       # Tauri 权限配置
 │   ├── icons/             # Application icons
-│   └── target/            # Rust build artifacts
+│   └── tauri.conf.json    # Tauri 配置
 ├── public/                 # Static assets
 │   ├── tauri.svg          # Tauri icon
-│   └── vite.svg           # Vite icon
+│   └── next.svg           # Next.js icon
+├── out/                    # Next.js 静态导出输出目录
 ├── .husky/                 # Git hooks (auto-installed)
 ├── .vscode/                # VS Code configuration
+├── .specify/               # Spec-kit 配置和文档
+│   └── memory/            # 项目记忆和宪法
 ├── package.json            # Project dependencies and scripts
-├── index.html             # HTML entry point
 ├── README.md              # Project documentation
 ├── CLAUDE.md              # Claude AI assistance guide
 ├── COMMIT_GUIDE.md        # Git commit conventions guide
@@ -40,8 +93,7 @@ This is a Tauri 2 + React + TypeScript template project designed to serve as a f
 ├── tailwind.config.js     # Tailwind CSS configuration
 ├── postcss.config.js      # PostCSS configuration
 ├── tsconfig.json          # TypeScript configuration
-├── tsconfig.node.json     # TypeScript Node configuration
-├── vite.config.ts         # Vite build configuration
+├── next.config.mjs        # Next.js 配置（项目根）
 └── pnpm-lock.yaml         # Dependency lock file
 ```
 
@@ -75,17 +127,90 @@ pnpm commit
 pnpm release
 ```
 
+### MCP-Driven Development Workflow (强制执行)
+
+**Phase 1 - Research (Context7 MCP)**:
+在实施任何代码更改之前，必须使用 Context7 MCP 研究相关文档：
+
+```bash
+# 研究相关库和框架的最新文档
+# 使用 mcp__context7__resolve-library-id 和 mcp__context7__get-library-docs
+```
+
+**Phase 2 - Implementation**:
+基于文档研究和既定模式进行编码，遵循技术栈标准
+
+**Phase 3 - Testing (Playwright MCP)**:
+完成任何网页相关更改后，必须使用 Playwright MCP 验证实现：
+
+```bash
+# 启动开发服务器
+pnpm tauri dev
+
+# 使用 Playwright MCP 测试前端功能
+# 使用 mcp__playwright__browser_* 工具进行浏览器自动化测试
+```
+
+**Phase 4 - Documentation**:
+更新相关文档，添加中文注释，确保知识传承
+
 ## Architecture Overview
 
-### Frontend (React + TypeScript)
+### Project Configuration
 
-- **Framework**: React 19.1.1 with TypeScript 5.8.3
-- **Build Tool**: Vite 7.0.4
-- **Location**: `src/`
-- **Entry Point**: `src/main.tsx` → `src/App.tsx`
-- **Styling**: Tailwind CSS v3 with daisyUI component library in `src/index.css`
-- **UI Components**: daisyUI - pre-built components with semantic class names
-- **Theme System**: Built-in dark/light mode with daisyUI theme system
+- **Package Manager**: pnpm (required)
+- **Node.js**: v22.19.0 LTS (managed via nvm)
+- **Frontend Dist**: `out/` (Next.js static export)
+- **Tauri Config**: `src-tauri/tauri.conf.json`
+- **Git Hooks**: Auto-installed via `prepare` script
+- **MCP Servers**: Playwright MCP + Context7 MCP (项目级配置)
+
+## Next.js App Router Architecture
+
+### App Router File Conventions
+
+**Special File Priority** (high to low):
+
+1. `layout.tsx` - 布局组件，定义共享 UI
+2. `page.tsx` - 页面组件，定义具体页面内容
+3. `loading.tsx` - 加载状态，React Suspense 边界
+4. `error.tsx` - 错误边界，处理运行时错误
+5. `not-found.tsx` - 404 页面，处理未找到路由
+
+**Component Types**:
+
+- **Server Components**: 默认，用于数据获取和静态内容
+- **Client Components**: 使用 `'use client'` 指令，用于交互性功能
+
+### Tauri + Next.js Integration
+
+**Tauri Configuration**:
+
+```json
+// src-tauri/tauri.conf.json
+{
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../out"
+  }
+}
+```
+
+**Package.json Scripts**:
+
+```json
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "tauri": "tauri"
+  }
+}
+```
 
 ### Backend (Tauri + Rust)
 
@@ -95,13 +220,59 @@ pnpm release
 - **Entry Point**: `src-tauri/src/main.rs` → `src-tauri/src/lib.rs`
 - **Commands**: Defined in `lib.rs` with `#[tauri::command]` macro
 
-### Project Configuration
+## Key Development Patterns
 
-- **Package Manager**: pnpm (required)
-- **Node.js**: v22.19.0 LTS (managed via nvm)
-- **Frontend Dist**: `dist/`
-- **Tauri Config**: `src-tauri/tauri.conf.json`
-- **Git Hooks**: Auto-installed via `prepare` script
+### Tauri Command Pattern
+
+Commands are defined in Rust with the `#[tauri::command]` macro and registered in the `invoke_handler`. Example from `template/src-tauri/src/lib.rs`:
+
+```rust
+#[tauri::command]
+fn greet(name: &str) -> String {
+    format!("Hello, {}! You've been greeted from Rust!", name)
+}
+
+// Register in builder
+.invoke_handler(tauri::generate_handler![greet])
+```
+
+### Frontend-Backend Communication
+
+React components call Rust commands using the `invoke` function:
+
+```typescript
+import { invoke } from '@tauri-apps/api/core'
+
+const result = await invoke('greet', { name: 'World' })
+```
+
+### Next.js App Router + Tauri Integration
+
+**Client Component Usage**:
+
+```typescript
+'use client'
+
+import { invoke } from '@tauri-apps/api/core'
+import { useState, useEffect } from 'react'
+
+export default function GreetingComponent() {
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    invoke('greet', { name: 'Next.js + Tauri' })
+      .then(setMessage)
+  }, [])
+
+  return <div>{message}</div>
+}
+```
+
+**Server Component Limitations**:
+
+- Server Components cannot directly call Tauri commands
+- Use Client Components for Tauri interactions
+- Server Components are for static content and data fetching
 
 ## Key Development Patterns
 
@@ -587,127 +758,131 @@ claude mcp remove my-server
 claude mcp reset-project-choices
 ```
 
-## MCP Usage Requirements and Workflow
+## MCP Usage Requirements and Workflow (强制执行)
 
-When working with Claude Code on this project, follow these MCP usage requirements to ensure high-quality, accurate code implementation.
+当在此项目上使用 Claude Code 时，必须遵循以下 MCP 使用要求，以确保高质量、准确的代码实现。
 
-### Mandatory Documentation Research (Context7 MCP)
+### 强制性文档研究 (Context7 MCP) - 第一阶段
 
-**Before implementing any code changes**, you must use the Context7 MCP to research relevant documentation:
+**在实施任何代码更改之前**，必须使用 Context7 MCP 研究相关文档：
 
-**Documentation Research Workflow:**
+**文档研究工作流程：**
 
-1. **Identify Dependencies**: Determine which libraries/frameworks are relevant to the task
-2. **Query Context7**: Use Context7 MCP tools to get up-to-date documentation
-3. **Study Examples**: Review code examples and API references from official documentation
-4. **Verify Best Practices**: Ensure implementation follows current best practices
-5. **Proceed with Implementation**: Only start coding after thorough documentation research
+1. **识别依赖项**: 确定与任务相关的库/框架
+2. **查询 Context7**: 使用 Context7 MCP 工具获取最新文档
+3. **研究示例**: 查看官方文档中的代码示例和 API 参考
+4. **验证最佳实践**: 确保实施遵循当前最佳实践
+5. **开始实施**: 只有在彻底的文档研究后才能开始编码
 
-**Required Research Scenarios:**
+**必须研究场景：**
 
-- **New Features**: Research all involved libraries before implementation
-- **Bug Fixes**: Understand the expected behavior through documentation
-- **Refactoring**: Verify new approaches and patterns
-- **Library Updates**: Research changes in new versions
-- **API Integration**: Study external API documentation
+- **新功能**: 实施前研究所有涉及的库
+- **错误修复**: 通过文档了解预期行为
+- **重构**: 验证新方法和模式
+- **库更新**: 研究新版本中的更改
+- **API 集成**: 研究外部 API 文档
+- **Next.js 功能**: 研究 Next.js 16 和 App Router 文档
+- **Tauri 集成**: 研究 Tauri 2.0 API 文档
 
-### Mandatory Web-Related Testing (Playwright MCP)
+### 强制性网页相关测试 (Playwright MCP) - 第三阶段
 
-**After making any web-related changes**, you must use the Playwright MCP to verify the implementation:
+**完成任何网页相关更改后**，必须使用 Playwright MCP 验证实现：
 
-**Web Testing Workflow:**
+**网页测试工作流程：**
 
-1. **Start Development Server**: Ensure the app is running (`pnpm tauri dev`)
-2. **Navigate to Relevant Page**: Use browser navigation to reach the affected area
-3. **Take Snapshot**: Capture the current state for visual verification
-4. **Test Interactions**: Click buttons, fill forms, test functionality
-5. **Verify Expected Behavior**: Confirm changes work as intended
-6. **Test Edge Cases**: Verify error handling and edge cases
-7. **Document Results**: Ensure testing results are documented
+1. **启动开发服务器**: 确保应用程序运行 (`pnpm tauri dev`)
+2. **导航到相关页面**: 使用浏览器导航到达受影响区域
+3. **拍摄快照**: 捕获当前状态以进行视觉验证
+4. **测试交互**: 点击按钮、填写表单、测试功能
+5. **验证预期行为**: 确认更改按预期工作
+6. **测试边缘情况**: 验证错误处理和边缘情况
+7. **记录结果**: 确保测试结果被记录
 
-**Required Testing Scenarios:**
+**必须测试场景：**
 
-- **UI Changes**: Test visual appearance and user interactions
-- **Form Modifications**: Verify form validation and submission
-- **Navigation Updates**: Test routing and page transitions
-- **Component Updates**: Verify component rendering and state management
-- **API Integration**: Test data fetching and error handling
-- **Theme Changes**: Verify dark/light mode functionality
-- **Responsive Design**: Test different screen sizes
+- **UI 更改**: 测试视觉外观和用户交互
+- **表单修改**: 验证表单验证和提交
+- **导航更新**: 测试 Next.js App Router 路由和页面转换
+- **组件更新**: 验证组件渲染和状态管理
+- **API 集成**: 测试数据获取和错误处理
+- **主题更改**: 验证深色/浅色模式功能
+- **响应式设计**: 测试不同屏幕尺寸
+- **Tauri 命令**: 测试前端与后端的通信
 
-### Quality Assurance Process
+### 质量保证流程
 
-**Complete MCP-Powered Development Cycle:**
+**完整的 MCP 驱动开发周期：**
 
-1. **Planning Phase**:
-   - Use Context7 to research all requirements
-   - Document implementation approach
-   - Identify potential pitfalls
+1. **规划阶段**:
+   - 使用 Context7 研究所有要求
+   - 记录实施方法
+   - 识别潜在陷阱
 
-2. **Implementation Phase**:
-   - Code implementation based on documentation research
-   - Follow established patterns and best practices
-   - Maintain code quality standards
+2. **实施阶段**:
+   - 基于文档研究进行代码实施
+   - 遵循既定模式和最佳实践
+   - 维护代码质量标准
 
-3. **Verification Phase**:
-   - Use Playwright to test web-related changes
-   - Verify functionality meets requirements
-   - Test edge cases and error conditions
+3. **验证阶段**:
+   - 使用 Playwright 测试网页相关更改
+   - 验证功能满足要求
+   - 测试边缘情况和错误条件
 
-4. **Documentation Phase**:
-   - Update relevant documentation
-   - Add code comments where necessary
-   - Document any breaking changes
+4. **文档阶段**:
+   - 更新相关文档
+   - 必要时添加代码注释
+   - 记录任何破坏性更改
 
-### MCP Tool Usage Guidelines
+### MCP 工具使用指南
 
-**Context7 MCP Best Practices:**
+**Context7 MCP 最佳实践：**
 
-- Always resolve library ID before getting documentation
-- Use specific topics to narrow down search results
-- Review multiple code examples when available
-- Check for version-specific documentation
-- Cross-reference information across multiple sources
+- 在获取文档前始终解析库 ID
+- 使用特定主题缩小搜索结果范围
+- 查看多个代码示例（如果可用）
+- 检查版本特定文档
+- 跨多个源交叉引用信息
 
-**Playwright MCP Best Practices:**
+**Playwright MCP 最佳实践：**
 
-- Always start from a clean browser state
-- Use descriptive element references
-- Take snapshots before and after changes
-- Test both successful and failure scenarios
-- Verify accessibility where applicable
-- Clean up after testing sessions
+- 始终从干净的浏览器状态开始
+- 使用描述性元素引用
+- 在更改前后拍摄快照
+- 测试成功和失败场景
+- 在适用情况下验证可访问性
+- 测试后清理
 
-### Example Workflow: Adding a New Feature
+### 示例工作流程：添加新功能
 
-**Step 1: Research with Context7**
+**第一步：使用 Context7 研究**
 
-- Research React component patterns and best practices
-- Study Tauri API documentation for backend integration
-- Review Tailwind CSS and DaisyUI documentation for styling
+- 研究 React 组件模式和最佳实践
+- 研究 Tauri API 文档以进行后端集成
+- 研究 Next.js 16 和 App Router 文档
+- 研究 Tailwind CSS 和 DaisyUI 文档以进行样式设计
 
-**Step 2: Implementation**
+**第二步：实施**
 
-- Write code based on researched documentation
-- Follow established patterns
-- Maintain code quality standards
+- 基于研究的文档编写代码
+- 遵循既定模式
+- 维护代码质量标准
 
-**Step 3: Testing with Playwright**
+**第三步：使用 Playwright 测试**
 
 ```bash
-# Start the development server
+# 启动开发服务器
 pnpm tauri dev
 
-# Test the new feature
-# Navigate to the application
-# Take snapshots before and after changes
-# Test user interactions
-# Verify functionality works as expected
+# 测试新功能
+# 导航到应用程序
+# 在更改前后拍摄快照
+# 测试用户交互
+# 验证功能按预期工作
 ```
 
-**Step 4: Verification**
+**第四步：验证**
 
-- Compare before/after snapshots
-- Verify all functionality works as expected
-- Test edge cases and error conditions
-- Update documentation as needed
+- 比较更改前后快照
+- 验证所有功能按预期工作
+- 测试边缘情况和错误条件
+- 必要时更新文档
