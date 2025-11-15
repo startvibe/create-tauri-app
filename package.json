@@ -21,7 +21,9 @@
     "prepare": "husky",
     "commit": "git-cz",
     "preversion": "pnpm lint && pnpm format:check",
-    "version": "standard-version && git add CHANGELOG.md",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
     "postversion": "git push && git push --tags"
   },
   "standard-version": {

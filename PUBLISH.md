@@ -28,22 +28,37 @@ npm login
 
 ### 2. 更新版本号
 
-**推荐使用标准版本管理：**
+**使用项目的版本发布脚本：**
 
 ```bash
-# 使用 standard-version (推荐，会自动生成变更日志)
-pnpm version patch    # 或 minor/major
+# 发布补丁版本 (修复 bug)
+pnpm release:patch
 
-# 或者使用 npm version (仅更新版本号)
-npm version patch     # 或 minor/major
+# 发布小版本 (新功能)
+pnpm release:minor
+
+# 发布大版本 (破坏性变更)
+pnpm release:major
 ```
 
-**使用 standard-version 的优势：**
+**脚本特性：**
 
-- 自动生成符合规范的提交消息
-- 自动更新 CHANGELOG.md
-- 支持语义化版本控制
-- 遵循项目的提交规范
+- 自动生成符合 conventional commit 规范的提交消息 (`chore(release): x.x.x`)
+- 自动更新 CHANGELOG.md，按类型分组显示变更
+- 自动创建 git tag (`v1.1.3`)
+- 自动推送到远程仓库
+- 运行代码质量检查 (lint + format)
+- 避免版本跳号问题
+
+**版本发布流程：**
+
+1. 运行 `pnpm release:patch` (或 `release:minor`/`release:major`)
+2. 脚本会自动：
+   - 执行代码质量检查 (lint + format)
+   - 递增版本号
+   - 更新 CHANGELOG.md
+   - 创建规范的提交和 tag
+   - 推送到远程仓库
 
 ### 3. 发布
 
