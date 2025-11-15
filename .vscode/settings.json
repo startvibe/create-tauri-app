@@ -7,7 +7,6 @@
   "git.enableCommitSigning": false,
   "git.ignoreLegacyWarning": true,
   "git.useEditorAsCommitInput": false,
-  
   // GitLens 设置
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": true,
@@ -17,36 +16,32 @@
   },
   "gitlens.codeLens.enabled": true,
   "gitlens.codeLens.recentChange.enabled": true,
-  
   // 编辑器设置
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
-  
   // 文件排除
   "files.exclude": {
     "**/node_modules": true,
     "**/dist": true,
     "**/target": true
   },
-  
   // 搜索排除
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true,
     "**/target": true
   },
-  
   // TypeScript 和 JavaScript 设置
   "typescript.preferences.importModuleSpecifier": "relative",
   "javascript.preferences.importModuleSpecifier": "relative",
-  
   // 终端设置
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.fontFamily": "MesloLGL Nerd Font Mono",
   "cSpell.words": [
+    "Jianan",
     "tauri",
     "tsparser"
   ],

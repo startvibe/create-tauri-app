@@ -87,11 +87,11 @@
     "vite",
     "tailwindcss"
   ],
-  "author": "anypond",
+  "author": "Jianan",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anypond/create-tauri-app.git"
+    "url": "https://github.com/startvibe/create-tauri-app.git"
   },
   "engines": {
     "node": ">=18.0.0"
