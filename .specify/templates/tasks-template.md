@@ -19,10 +19,14 @@ description: 'Task list template for feature implementation'
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
+本项目采用双项目架构，路径约定如下：
+
+- **主项目 (npx 工具)**: 根目录直接包含 CLI 工具文件 (`create.js`, `package.json`)
+- **模板子项目**: `template/` 目录包含完整的 Tauri 2 + Next.js 应用
+- **模板源码**: `template/src/`, `template/src-tauri/`
+- **配置文件**: 双项目共享的配置文件在根目录，模板特定配置在 `template/` 目录
+- **文档**: `.specify/` 目录包含 Speckit 配置和模板文件
+- Paths shown below assume dual-project architecture - adjust based on plan.md structure
 
 <!--
   ============================================================================
@@ -49,14 +53,15 @@ description: 'Task list template for feature implementation'
 
 - [ ] T001 Create project structure per implementation plan
 - [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] 配置代码质量工具（ESLint + Prettier + Husky）
-- [ ] T004 [P] 设置 Claude Code 和 MCP 服务器配置（Playwright + Context7）
-- [ ] T005 [P] 验证主项目使用 TypeScript 技术栈
-- [ ] T006 [P] 确保作为 npx 工具提供标准化的项目创建接口
-- [ ] T007 [P] 确保功能专注于主项目的模板创建和管理工具
-- [ ] T008 [P] 确保模板技术栈符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + DaisyUI 5
+- [ ] T003 [P] 配置双项目代码质量工具（ESLint + Prettier + Husky）
+- [ ] T004 [P] 设置主项目和模板项目的 Claude Code 和 MCP 服务器配置（Playwright + Context7）
+- [ ] T005 [P] 验证主项目使用 Node.js CLI 技术栈，模板项目使用 TypeScript + Next.js 技术栈
+- [ ] T006 [P] 确保主项目作为 npx 工具提供标准化的项目创建接口
+- [ ] T007 [P] 确保主项目专注于 CLI 工具功能，模板项目专注于 Tauri 2 + Next.js 应用模板
+- [ ] T008 [P] 确保模板项目技术栈符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + DaisyUI 5
 - [ ] T009 [P] 确保 SDD (Specification Driven Development) 和测试驱动开发流程
-- [ ] T010 [P] 确保所有文档和注释使用中文（专业术语和源代码除外）
+- [ ] T010 [P] 确保开发环境路径管理：主项目在根目录开发，模板项目在template目录内开发
+- [ ] T011 [P] 确保所有文档、代码注释、用户交互和技术讨论使用中文（专业术语和源代码除外）
 
 ---
 
@@ -89,11 +94,19 @@ Examples of foundational tasks (adjust based on your project):
 
 > **NOTE: 实施前必须使用 Context7 MCP 研究所有相关库和框架**
 
-- [ ] T010 [P] [US1] 使用 Context7 研究 React 19 组件最佳实践
-- [ ] T011 [P] [US1] 使用 Context7 研究 Next.js 16.0.3 App Router 文档
-- [ ] T012 [P] [US1] 使用 Context7 研究 Tauri 2.0 API 文档
-- [ ] T013 [P] [US1] 使用 Context7 研究 Tailwind CSS 和 DaisyUI 5 样式指南
-- [ ] T014 [P] [US1] 使用 Context7 研究 Next.js 与 Tauri 2.0 集成方案
+**主项目 CLI 工具研究**:
+
+- [ ] T010 [P] [US1] 使用 Context7 研究 Node.js CLI 工具最佳实践和 Commander.js 框架
+- [ ] T011 [P] [US1] 使用 Context7 研究 fs-extra 文件操作和模板引擎实现
+- [ ] T012 [P] [US1] 使用 Context7 研究交互式命令行界面设计和用户输入处理
+
+**模板子项目研究**:
+
+- [ ] T013 [P] [US1] 使用 Context7 研究 Next.js 16.0.3 App Router 文档和静态导出配置
+- [ ] T014 [P] [US1] 使用 Context7 研究 Tauri 2.0 API 文档和桌面应用集成
+- [ ] T015 [P] [US1] 使用 Context7 研究 React 19 组件最佳实践和 TypeScript 5.8.3 特性
+- [ ] T016 [P] [US1] 使用 Context7 研究 Tailwind CSS 和 DaisyUI 5 样式指南
+- [ ] T017 [P] [US1] 使用 Context7 研究 Next.js 与 Tauri 2.0 集成方案和静态导出要求
 
 ### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
 

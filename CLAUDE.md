@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Tauri 2 + React + TypeScript template creator project. It provides a command-line tool for generating desktop application templates with comprehensive development tooling and best practices.
+This is a dual-architecture project consisting of:
+
+1. **Main Project**: An npx-based CLI tool for creating Tauri 2 applications from template
+2. **Template Sub-project**: A complete Tauri 2 + Next.js desktop application template
+
+The main project provides interactive project creation capabilities, while the template sub-project offers a production-ready desktop application framework with comprehensive development tooling and best practices.
 
 ## Project Structure
 
@@ -35,6 +40,35 @@ This is a Tauri 2 + React + TypeScript template creator project. It provides a c
     └── ...               # Other configuration files
 ```
 
+## Development Environment Path Management
+
+**CRITICAL**: This project uses a dual-architecture approach that requires strict path management:
+
+### Development Path Guidelines
+
+- **Main Project Development**: Work in the project root directory (`/Users/nan/Documents/Developer/startvibe/create-tauri-app/`)
+- **Template Sub-project Development**: Must navigate to `template/` directory first (`cd template`)
+- **Path Awareness**: Always know which project context you're working in to avoid errors
+- **Command Execution**: Run pnpm commands in the correct directory for the target project
+- **MCP Tool Usage**: Context7 and Playwright MCP servers must be launched in the appropriate project directory
+
+### Example Workflow
+
+```bash
+# Main project development (in root directory)
+cd /Users/nan/Documents/Developer/startvibe/create-tauri-app/
+pnpm install
+pnpm lint
+
+# Template project development (navigate to template first)
+cd template/
+pnpm install
+pnpm tauri dev
+
+# Return to main project when done with template work
+cd ..
+```
+
 ## Development Commands
 
 ### Primary Development Workflow
@@ -42,7 +76,7 @@ This is a Tauri 2 + React + TypeScript template creator project. It provides a c
 **For the template creator (main project):**
 
 ```bash
-# Install dependencies
+# Install dependencies (in root directory)
 pnpm install
 
 # Create a new project from template
@@ -61,7 +95,7 @@ pnpm commit
 **For testing the template:**
 
 ```bash
-# Navigate to template directory
+# Navigate to template directory (REQUIRED)
 cd template
 
 # Install template dependencies
@@ -86,12 +120,14 @@ pnpm tauri build
 
 ### Template Project
 
-- **Framework**: React 19.1.1 with TypeScript 5.8.3
-- **Build Tool**: Vite 7.0.4
+- **Framework**: React 19 + Next.js 16.0.3 with TypeScript 5.8.3
+- **Build Tool**: Next.js 16.0.3 with static export (`output: 'export'`)
 - **Backend**: Tauri 2.0.0 with Rust 1.89.0
-- **Styling**: Tailwind CSS v3 with DaisyUI component library
-- **UI Components**: DaisyUI - pre-built components with semantic class names
+- **Routing**: Next.js App Router (required for Tauri integration)
+- **Styling**: Tailwind CSS v3 with DaisyUI 5 component library
+- **UI Components**: DaisyUI 5 - pre-built components with semantic class names
 - **Theme System**: Built-in dark/light mode with DaisyUI theme system
+- **Special Requirement**: Static export configuration for Tauri desktop compatibility
 
 ## Key Development Patterns
 
@@ -186,11 +222,13 @@ The template's package.json includes:
 
 ### Updating the Template
 
-1. Make changes in the `template/` directory
-2. Test changes by running `pnpm tauri dev` in template directory
-3. Verify linting passes: `pnpm lint` (from root)
-4. Create a test project to verify the template works
-5. Commit changes using conventional commit format
+1. **Navigate to template directory**: `cd template/` (REQUIRED)
+2. Make changes in the template codebase
+3. Test changes by running `pnpm tauri dev` (while in template directory)
+4. Return to root: `cd ..`
+5. Verify linting passes: `pnpm lint` (from root directory)
+6. Create a test project to verify the template works
+7. Commit changes using conventional commit format
 
 ### Adding New Dependencies
 
@@ -202,7 +240,7 @@ The template's package.json includes:
 ### Testing Template Creation
 
 ```bash
-# From project root
+# From project root (main project context)
 node create.js test-project
 
 # Verify the created project
@@ -214,6 +252,30 @@ pnpm tauri dev
 cd ..
 rm -rf test-project
 ```
+
+### Dual-Project Development Workflow
+
+**Main Project Development (Root Directory)**:
+
+```bash
+# Stay in root directory for CLI tool development
+pnpm install
+pnpm lint
+pnpm create test-app
+```
+
+**Template Development (Template Directory)**:
+
+```bash
+# Navigate to template for frontend development
+cd template/
+pnpm install
+pnpm tauri dev
+# Make UI changes, test with Playwright MCP, etc.
+cd ../  # Return to root when finished
+```
+
+**Important**: Always be aware of your current working directory to avoid running commands in the wrong project context.
 
 ## Git Commit Conventions
 

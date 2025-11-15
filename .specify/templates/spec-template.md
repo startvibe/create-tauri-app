@@ -116,14 +116,15 @@ _Example of marking unclear requirements:_
 
 ### Compliance Criteria _(项目宪法要求)_
 
-- **CC-001**: 主项目必须通过 `pnpm lint` 和 `pnpm format:check` 验证
+- **CC-001**: 双项目都必须通过 `pnpm lint` 和 `pnpm format:check` 验证
 - **CC-002**: 实施前必须使用 Context7 MCP 研究所有相关库文档
 - **CC-003**: Web 相关更改后必须使用 Playwright MCP 进行验证测试
-- **CC-004**: 生成的项目必须包含完整的 MCP 服务器配置（Context7 + Playwright）
-- **CC-005**: 主项目必须使用 TypeScript 技术栈
-- **CC-006**: 必须配置 ESLint + Prettier + husky hooks 代码规范工具
-- **CC-007**: 功能开发必须专注于主项目的模板创建和管理工具
+- **CC-004**: 主项目和模板项目都必须包含完整的 MCP 服务器配置（Context7 + Playwright）
+- **CC-005**: 主项目必须使用 Node.js CLI 技术栈，模板项目使用 TypeScript + Next.js 技术栈
+- **CC-006**: 两个项目都必须配置 ESLint + Prettier + husky hooks 代码规范工具
+- **CC-007**: 主项目功能必须专注于 npx CLI 工具，模板项目专注于 Tauri 2 + Next.js 应用模板
 - **CC-008**: 必须遵循 SDD (Specification Driven Development) 和测试驱动开发
-- **CC-009**: 模板技术栈必须符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + DaisyUI 5
-- **CC-010**: Next.js 迁移必须使用 App Router 模式并保持 Tauri 集成
-- **CC-011**: 所有文档和沟通必须使用中文（专业术语和源代码除外）
+- **CC-009**: 主项目开发必须在根目录进行，模板项目开发必须在 `template/` 目录内进行
+- **CC-010**: 模板项目技术栈必须符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + DaisyUI 5
+- **CC-011**: 模板项目必须配置 Next.js 静态导出 (`output: 'export'`) 支持 Tauri 桌面应用
+- **CC-012**: 所有文档、代码注释、用户交互和技术讨论必须使用中文（专业术语和源代码除外）

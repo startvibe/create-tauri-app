@@ -31,14 +31,15 @@
 
 _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-- 模板工具优先开发：此功能是否专注于主项目的模板创建和管理功能？
-- CLI 接口标准：是否作为 npx 工具提供标准化的项目创建接口？
-- 文档驱动开发：是否已使用 Context7 研究所有依赖库？是否执行 SDD 和测试驱动开发？
-- 集成测试：是否包含主项目工具功能和 MCP 功能测试？是否使用 Playwright MCP 测试前端功能？
-- 代码质量标准：主项目是否配置 ESLint + Prettier + husky hooks？是否包含 Claude Code 和 MCP 配置？
-- 技术栈一致性：主项目是否使用 TypeScript 技术栈？是否遵循 Tauri 2.0 + React 19 + Next.js 16.0.3 技术栈？
-- Next.js 迁移原则：是否遵循 Next.js 16.0.3 迁移原则？是否使用 App Router 模式？
-- 中文优先沟通：所有文档和沟通是否使用中文（专业术语和源代码除外）？
+- 双项目架构原则：此功能是否明确区分主项目（npx工具）和模板子项目的职责？
+- 技术栈标准化：是否遵循主项目Node.js CLI和模板子项目Tauri 2+Next.js的技术栈要求？
+- 统一代码质量标准：两个项目是否都配置ESLint + Prettier + husky hooks？是否都支持中文提交？
+- MCP驱动开发：是否已使用Context7研究所有依赖库？是否执行SDD和测试驱动开发？
+- 开发环境路径管理：是否明确主项目在根目录开发，模板子项目必须在template目录内开发？
+- 模板子项目特殊要求：模板是否配置Next.js静态导出？是否支持Tauri桌面应用集成？
+- 主项目CLI工具要求：主项目是否提供交互式创建、模板复制、配置更新等核心功能？
+- 项目间协同：是否考虑主项目和模板子项目的版本同步和依赖管理？
+- 中文优先沟通：所有文档、代码注释、用户交互和技术讨论是否使用中文？
 
 ## Project Structure
 
@@ -56,51 +57,29 @@ specs/[###-feature]/
 
 ### Source Code (repository root)
 
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+本项目采用双项目架构，包含主项目（npx工具）和模板子项目：
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+# 双项目架构 (DEFAULT)
+create-tauri-app/                    # 主项目根目录
+├── create.js                        # CLI工具入口文件
+├── package.json                     # 主项目依赖配置
+├── eslint.config.js                 # 双项目ESLint配置
+├── cz-config.js                     # 约定式提交配置
+├── commitlint.config.js             # 提交信息验证
+├── .husky/                          # Git hooks
+├── .specify/                        # Speckit配置和模板
+└── template/                        # 模板子项目
+    ├── src/                         # Next.js应用源码
+    │   └── app/                     # App Router目录
+    ├── src-tauri/                   # Tauri后端
+    ├── package.json                 # 模板项目依赖
+    ├── next.config.js               # Next.js配置
+    ├── tailwind.config.js           # Tailwind CSS配置
+    └── .mcp.json                    # MCP服务器配置
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**结构决策**: 采用双项目架构，主项目提供CLI工具功能，模板子项目提供Tauri 2 + Next.js应用模板。两个项目共享相同的代码质量标准和开发规范，但具有不同的技术栈和职责。
 
 ## Complexity Tracking
 
