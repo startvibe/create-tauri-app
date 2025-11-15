@@ -42,6 +42,8 @@
   "terminal.integrated.fontFamily": "MesloLGL Nerd Font Mono",
   "cSpell.words": [
     "Jianan",
+    "postversion",
+    "preversion",
     "startvibe",
     "tauri",
     "tsparser"

@@ -21,10 +21,10 @@
     "prepare": "husky",
     "commit": "git-cz",
     "preversion": "pnpm lint && pnpm format:check",
-    "release:patch": "standard-version --release-as patch",
-    "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "release:patch": "pnpm preversion && standard-version --release-as patch && git add CHANGELOG.md && pnpm postversion",
+    "release:minor": "pnpm preversion && standard-version --release-as minor && git add CHANGELOG.md && pnpm postversion",
+    "release:major": "pnpm preversion && standard-version --release-as major && git add CHANGELOG.md && pnpm postversion"
   },
   "standard-version": {
     "types": [
