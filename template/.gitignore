@@ -17,6 +17,7 @@ dist/
 dist-ssr/
 build/
 target/
+out/
 
 # Environment variables
 .env
