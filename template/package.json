@@ -58,7 +58,6 @@
     "@types/react-dom": "^19.1.6",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
     "@typescript-eslint/parser": "^8.42.0",
-    "@vitejs/plugin-react": "^4.6.0",
     "autoprefixer": "^10.4.21",
     "commitizen": "^4.3.1",
     "eslint": "^9.35.0",
@@ -72,8 +71,6 @@
     "standard-version": "^9.5.0",
     "tailwindcss": "^3.4.1",
     "typescript": "~5.8.3",
-    "vite": "^7.0.4",
-    "vite-plugin-devtools-json": "^1.0.0",
     "word-wrap": "^1.2.5"
   }
 }
