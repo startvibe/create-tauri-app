@@ -7,7 +7,15 @@ import prettierConfig from 'eslint-config-prettier'
 
 export default [
   {
-    ignores: ['node_modules/**', 'dist/**', 'src-tauri/**', '.react-router/**'],
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'out/**',
+      'src-tauri/**',
+      '.react-router/**',
+      '.next/**',
+    ],
   },
   js.configs.recommended,
   // JavaScript 配置
@@ -44,6 +52,8 @@ export default [
         performance: 'readonly',
         CustomEvent: 'readonly',
         __REACT_DEVTOOLS_GLOBAL_HOOK__: 'readonly',
+        React: 'readonly',
+        useEffect: 'readonly',
       },
     },
     plugins: {
@@ -112,6 +122,8 @@ export default [
         performance: 'readonly',
         CustomEvent: 'readonly',
         __REACT_DEVTOOLS_GLOBAL_HOOK__: 'readonly',
+        React: 'readonly',
+        useEffect: 'readonly',
       },
     },
     plugins: {
