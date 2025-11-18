@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { I18nProvider } from './i18n/provider'
+import { ThemeProvider } from './components/theme-provider'
 
 export const metadata: Metadata = {
   title: 'Tauri App',
@@ -9,9 +10,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
-      <body className="bg-base-200">
-        <I18nProvider>{children}</I18nProvider>
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className="min-h-screen bg-base-200 text-base-content transition-colors duration-300">
+        <ThemeProvider>
+          <I18nProvider>{children}</I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

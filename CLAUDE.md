@@ -487,3 +487,14 @@ The create.js script includes debug logging:
 # Enable debug output
 DEBUG=@startvibe/create-tauri-app:* node create.js my-app
 ```
+
+## Active Technologies
+
+- TypeScript 5.8.3+, JavaScript ES2022, Rust 1.89.0+ + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, DaisyUI 5, react-i18next, lucide-react (002-simplify-template-homepage)
+
+- TypeScript 5.8.3+ (React 19 + Next.js 16.0.3) + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, DaisyUI 5 (002-simplify-template-homepage)
+- localStorage (用户偏好设置) + JSON文件 (多语言资源) (002-simplify-template-homepage)
+
+## Recent Changes
+
+- 002-simplify-template-homepage: Added TypeScript 5.8.3+ (React 19 + Next.js 16.0.3) + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, DaisyUI 5
