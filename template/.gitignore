@@ -69,6 +69,7 @@ Cargo.lock
 
 # TypeScript cache
 *.tsbuildinfo
+next-env.d.ts
 
 # Optional cache directories
 .npm
