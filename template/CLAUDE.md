@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - ✅ **功能完整**: 首页展示、仪表板、用户管理、设置页面等所有业务功能
 - ✅ **现代化架构**: Next.js 16 + App Router + React 19 + TypeScript 5.8.3
-- ✅ **主题系统**: 深色/浅色模式切换，DaisyUI组件库
+- ✅ **主题系统**: 深色/浅色模式切换，shadcn/ui组件库
 - ✅ **国际化**: 中英文双语支持
 - ✅ **开发体验**: MCP驱动开发，完整的代码质量工具链
 - ✅ **生产就绪**: 构建时间284ms，性能优异
@@ -50,9 +50,9 @@ pnpm commit
 - **Web框架**: Next.js 16.0.3 (App Router架构)
 - **React版本**: React 19.1.1 + TypeScript 5.8.3
 - **构建工具**: Next.js内置构建系统，静态导出模式 (`output: 'export'`)
-- **样式方案**: Tailwind CSS v3 + DaisyUI组件库
-- **UI组件**: DaisyUI - 语义化类名的预制组件
-- **主题系统**: 内置深色/浅色模式，DaisyUI主题系统
+- **样式方案**: Tailwind CSS v3 + shadcn/ui组件库
+- **UI组件**: shadcn/ui - 现代、无障碍的React组件
+- **主题系统**: 内置深色/浅色模式，Next.js主题系统
 - **路由方案**: Next.js App Router，静态预渲染
 - **国际化**: i18next，中英文双语支持
 
@@ -247,47 +247,56 @@ export default function GreetingComponent() {
 }
 ```
 
-### 5.3 DaisyUI + Tailwind CSS
+### 5.3 shadcn/ui + Tailwind CSS
 
-**tailwind.config.js 配置**:
+**shadcn/ui 组件使用**:
 
-```javascript
-export default {
-  plugins: [require('daisyui')],
-  daisyui: {
-    themes: ['light', 'dark'],
-    darkTheme: 'dark',
-    themeRoot: ':root',
-  },
+```typescript
+// 按钮组件
+import { Button } from '@/components/ui/button'
+
+export default function ButtonExample() {
+  return (
+    <>
+      <Button>默认按钮</Button>
+      <Button variant="outline">轮廓按钮</Button>
+      <Button variant="ghost">幽灵按钮</Button>
+    </>
+  )
 }
-```
 
-**常用组件示例**:
+// 卡片组件
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
-```html
-<!-- 按钮组件 -->
-<button className="btn btn-primary">主要按钮</button>
-<button className="btn btn-outline">轮廓按钮</button>
-<button className="btn btn-ghost">幽灵按钮</button>
+export default function CardExample() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>卡片标题</CardTitle>
+        <CardDescription>卡片描述</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>卡片内容</p>
+      </CardContent>
+      <CardFooter>
+        <Button>操作</Button>
+      </CardFooter>
+    </Card>
+  )
+}
 
-<!-- 卡片组件 -->
-<div className="card bg-base-100 shadow-xl">
-  <div className="card-body">
-    <h2 className="card-title">卡片标题</h2>
-    <p className="text-base-content/70">卡片内容</p>
-    <div className="card-actions">
-      <button className="btn btn-primary">操作</button>
+// 表单组件
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
+export default function FormExample() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="username">用户名</Label>
+      <Input id="username" type="text" placeholder="输入用户名" />
     </div>
-  </div>
-</div>
-
-<!-- 表单组件 -->
-<div className="form-control">
-  <label className="label">
-    <span className="label-text">用户名</span>
-  </label>
-  <input type="text" className="input input-bordered" />
-</div>
+  )
+}
 ```
 
 ### 5.4 测试驱动开发 (TDD) 具体要求
@@ -307,7 +316,7 @@ mcp__playwright__browser_navigate
 mcp__playwright__browser_wait_for
 
 # 3. 主题测试 (深色/浅色模式)
-# 验证 DaisyUI 主题切换功能和样式一致性
+# 验证 shadcn/ui 主题切换功能和样式一致性
 mcp__playwright__browser_evaluate
 # 代码: document.documentElement.setAttribute('data-theme', 'dark')
 
@@ -503,7 +512,7 @@ pnpm tauri build    # 必须成功打包桌面应用
 ├── next.config.js         # Next.js 配置 (静态导出)
 ├── eslint.config.js       # ESLint 配置 (Next.js规则)
 ├── tsconfig.json          # TypeScript 配置 (Next.js兼容)
-└── tailwind.config.js     # Tailwind CSS 配置 + DaisyUI
+└── tailwind.config.js     # Tailwind CSS 配置 + shadcn/ui
 ```
 
 ### 7.2 MCP服务器配置

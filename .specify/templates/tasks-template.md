@@ -58,7 +58,7 @@ description: 'Task list template for feature implementation'
 - [ ] T005 [P] 验证主项目使用 Node.js CLI 技术栈，模板项目使用 TypeScript + Next.js 技术栈
 - [ ] T006 [P] 确保主项目作为 npx 工具提供标准化的项目创建接口
 - [ ] T007 [P] 确保主项目专注于 CLI 工具功能，模板项目专注于 Tauri 2 + Next.js 应用模板
-- [ ] T008 [P] 确保模板项目技术栈符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + DaisyUI 5
+- [ ] T008 [P] 确保模板项目技术栈符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + shadcn/ui
 - [ ] T009 [P] 确保 SDD (Specification Driven Development) 和测试驱动开发流程
 - [ ] T010 [P] 确保开发环境路径管理：主项目在根目录开发，模板项目在template目录内开发
 - [ ] T011 [P] 确保所有文档、代码注释、用户交互和技术讨论使用中文（专业术语和源代码除外）
@@ -105,7 +105,7 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] T013 [P] [US1] 使用 Context7 研究 Next.js 16.0.3 App Router 文档和静态导出配置
 - [ ] T014 [P] [US1] 使用 Context7 研究 Tauri 2.0 API 文档和桌面应用集成
 - [ ] T015 [P] [US1] 使用 Context7 研究 React 19 组件最佳实践和 TypeScript 5.8.3 特性
-- [ ] T016 [P] [US1] 使用 Context7 研究 Tailwind CSS 和 DaisyUI 5 样式指南
+- [ ] T016 [P] [US1] 使用 Context7 研究 Tailwind CSS 和 shadcn/ui 样式指南
 - [ ] T017 [P] [US1] 使用 Context7 研究 Next.js 与 Tauri 2.0 集成方案和静态导出要求
 
 ### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️

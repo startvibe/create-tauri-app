@@ -42,7 +42,7 @@
 - **React 19.1.0** - UI 框架
 - **TypeScript 5.8.3** - 类型系统
 - **Tailwind CSS 3.4.17** - CSS 框架
-- **DaisyUI 5.x** - UI 组件库
+- **shadcn/ui** - 现代、无障碍的UI组件库
 - **i18next** - 国际化支持
 
 ### 后端技术栈
@@ -123,7 +123,7 @@ pnpm commit
 ├── next.config.js        # Next.js 配置（静态导出）
 ├── eslint.config.js      # ESLint 配置 (Next.js规则)
 ├── tsconfig.json         # TypeScript 配置 (Next.js兼容)
-├── tailwind.config.js    # Tailwind CSS 配置 + DaisyUI
+├── tailwind.config.js    # Tailwind CSS 配置 + shadcn/ui
 └── package.json          # 项目配置和依赖
 ```
 
@@ -175,32 +175,54 @@ export default nextConfig
 
 ## 🎨 样式系统
 
-### DaisyUI 5.x 组件示例
+### shadcn/ui 组件示例
 
-```html
-<!-- 按钮组件 -->
-<button className="btn btn-primary">主要按钮</button>
-<button className="btn btn-outline">轮廓按钮</button>
-<button className="btn btn-ghost">幽灵按钮</button>
+```typescript
+// 按钮组件
+import { Button } from '@/components/ui/button'
 
-<!-- 卡片组件 -->
-<div className="card bg-base-100 shadow-xl">
-  <div className="card-body">
-    <h2 className="card-title">卡片标题</h2>
-    <p className="text-base-content/70">卡片内容</p>
-    <div className="card-actions">
-      <button className="btn btn-primary">操作</button>
+export default function ButtonExample() {
+  return (
+    <>
+      <Button>默认按钮</Button>
+      <Button variant="outline">轮廓按钮</Button>
+      <Button variant="ghost">幽灵按钮</Button>
+    </>
+  )
+}
+
+// 卡片组件
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+
+export default function CardExample() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>卡片标题</CardTitle>
+        <CardDescription>卡片描述</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>卡片内容</p>
+      </CardContent>
+      <CardFooter>
+        <Button>操作</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+
+// 表单组件
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
+export default function FormExample() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="username">用户名</Label>
+      <Input id="username" type="text" placeholder="输入用户名" />
     </div>
-  </div>
-</div>
-
-<!-- 表单组件 -->
-<div className="form-control">
-  <label className="label">
-    <span className="label-text">用户名</span>
-  </label>
-  <input type="text" className="input input-bordered" />
-</div>
+  )
+}
 ```
 
 ## 🔄 SDD + MDD + TDD 开发流程
@@ -351,7 +373,7 @@ git commit -m "🐛fix(ui): 修复按钮样式"
 - [Next.js 文档](https://nextjs.org/) - React 全栈框架
 - [React 文档](https://react.dev/) - UI 框架
 - [Tailwind CSS v3 文档](https://tailwindcss.com/) - CSS 框架
-- [DaisyUI 文档](https://daisyui.com/) - UI 组件库
+- [shadcn/ui 文档](https://ui.shadcn.com/) - 现代、无障碍的UI组件库
 - [TypeScript 文档](https://www.typescriptlang.org/) - 类型系统
 
 ## 🔧 故障排除

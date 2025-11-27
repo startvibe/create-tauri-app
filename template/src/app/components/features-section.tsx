@@ -70,7 +70,7 @@ export function FeaturesSection() {
       description: t('features.design.description', '内置现代化 UI 组件库，支持主题切换'),
       icon: PaletteIcon,
       details: [
-        t('features.design.details.0', 'Tailwind CSS + DaisyUI'),
+        t('features.design.details.0', 'Tailwind CSS + shadcn/ui'),
         t('features.design.details.1', '暗色/亮色主题'),
         t('features.design.details.2', '响应式设计'),
       ],

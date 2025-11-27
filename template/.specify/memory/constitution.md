@@ -20,7 +20,7 @@ Follow-up TODOs: None
 - **后端框架**: Tauri 2.0 + Rust 1.89.0+
 - **构建工具**: Next.js 16.0.3
 - **路由系统**: Next.js App Router
-- **样式系统**: Tailwind CSS v3 + DaisyUI 5 + PostCSS
+- **样式系统**: Tailwind CSS v3 + shadcn/ui + PostCSS
 - **包管理器**: pnpm（强制要求）
 
 ### II. 代码质量标准（不可协商）

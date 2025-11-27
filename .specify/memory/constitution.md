@@ -44,7 +44,7 @@ Follow-up TODOs: 需要检查其他speckit模板文件的一致性
 - **前端框架**: React 19 + Next.js 16.0.3 + TypeScript 5.8.3+
 - **后端框架**: Tauri 2.0 + Rust 1.89.0+
 - **路由系统**: Next.js App Router（强制）
-- **样式系统**: Tailwind CSS v3 + DaisyUI 5 + PostCSS
+- **样式系统**: Tailwind CSS v3 + shadcn/ui + PostCSS
 - **包管理器**: pnpm（强制要求）
 
 ### III. 统一代码质量标准（不可协商）
@@ -142,7 +142,7 @@ Follow-up TODOs: 需要检查其他speckit模板文件的一致性
 
 - 使用 Context7 MCP 研究 Next.js 16.0.3 和 Tauri 2.0 集成方案
 - 研究最新的 React 19、TypeScript 5.8.3 特性
-- 分析 Tailwind CSS + DaisyUI 在 Next.js 环境下的最佳实践
+- 分析 Tailwind CSS + shadcn/ui 在 Next.js 环境下的最佳实践
 
 **第二阶段 - 实施**：
 

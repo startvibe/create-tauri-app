@@ -124,9 +124,9 @@ pnpm tauri build
 - **Build Tool**: Next.js 16.0.3 with static export (`output: 'export'`)
 - **Backend**: Tauri 2.0.0 with Rust 1.89.0
 - **Routing**: Next.js App Router (required for Tauri integration)
-- **Styling**: Tailwind CSS v3 with DaisyUI 5 component library
-- **UI Components**: DaisyUI 5 - pre-built components with semantic class names
-- **Theme System**: Built-in dark/light mode with DaisyUI theme system
+- **Styling**: Tailwind CSS v3 with shadcn/ui component library
+- **UI Components**: shadcn/ui - modern, accessible React components
+- **Theme System**: Built-in dark/light mode with Next.js theme system
 - **Special Requirement**: Static export configuration for Tauri desktop compatibility
 
 ## Key Development Patterns
@@ -196,7 +196,7 @@ async function createProject(projectName, options) {
 
 The template's package.json includes:
 
-- **Dependencies**: React, TypeScript, Tauri, Tailwind CSS, DaisyUI
+- **Dependencies**: React, TypeScript, Tauri, Tailwind CSS, shadcn/ui
 - **Dev Dependencies**: ESLint, Prettier, Husky, Commitizen
 - **Scripts**: Development, build, lint, and format commands
 - **Husky Configuration**: Auto-installs Git hooks
@@ -205,8 +205,8 @@ The template's package.json includes:
 
 1. **Code Quality**: ESLint + Prettier with React/TypeScript support
 2. **Git Conventions**: Conventional commits with emoji support
-3. **Theme System**: Dark/light mode with daisyUI theme system
-4. **Component Library**: Pre-built UI components with DaisyUI
+3. **Theme System**: Dark/light mode with Next.js theme system
+4. **Component Library**: Modern, accessible UI components with shadcn/ui
 5. **Build Optimization**: Vite with fast refresh and optimized builds
 6. **Claude Code Integration**: Project-level MCP server configuration for enhanced AI assistance
 
@@ -441,7 +441,7 @@ When working with Claude Code on this project, follow these MCP usage requiremen
 
 - Research React component patterns and best practices
 - Study Tauri API documentation for backend integration
-- Review Tailwind CSS and DaisyUI documentation for styling
+- Review Tailwind CSS and shadcn/ui documentation for styling
 
 **Step 2: Implementation**
 
@@ -490,11 +490,11 @@ DEBUG=@startvibe/create-tauri-app:* node create.js my-app
 
 ## Active Technologies
 
-- TypeScript 5.8.3+, JavaScript ES2022, Rust 1.89.0+ + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, DaisyUI 5, react-i18next, lucide-react (002-simplify-template-homepage)
+- TypeScript 5.8.3+, JavaScript ES2022, Rust 1.89.0+ + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, shadcn/ui, react-i18next, lucide-react (002-simplify-template-homepage)
 
-- TypeScript 5.8.3+ (React 19 + Next.js 16.0.3) + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, DaisyUI 5 (002-simplify-template-homepage)
+- TypeScript 5.8.3+ (React 19 + Next.js 16.0.3) + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, shadcn/ui (002-simplify-template-homepage)
 - localStorage (用户偏好设置) + JSON文件 (多语言资源) (002-simplify-template-homepage)
 
 ## Recent Changes
 
-- 002-simplify-template-homepage: Added TypeScript 5.8.3+ (React 19 + Next.js 16.0.3) + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, DaisyUI 5
+- 002-simplify-template-homepage: Added TypeScript 5.8.3+ (React 19 + Next.js 16.0.3) + React 19, Next.js 16.0.3, Tauri 2.0, Tailwind CSS v3, shadcn/ui

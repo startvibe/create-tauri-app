@@ -7,15 +7,7 @@ import prettierConfig from 'eslint-config-prettier'
 
 export default [
   {
-    ignores: [
-      'node_modules/**',
-      'dist/**',
-      'build/**',
-      'out/**',
-      'src-tauri/**',
-      '.react-router/**',
-      '.next/**',
-    ],
+    ignores: ['node_modules/**', 'dist/**', 'build/**', 'out/**', 'src-tauri/**', '.next/**'],
   },
   js.configs.recommended,
   // JavaScript 配置

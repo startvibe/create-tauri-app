@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ChevronDownIcon, SparklesIcon } from 'lucide-react'
 import { useTranslation } from '../i18n/provider'
+import { Button } from '../../components/ui/button'
 
 export function HeroSection() {
   const { t } = useTranslation()
@@ -74,22 +75,25 @@ export function HeroSection() {
 
         {/* 操作按钮 */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-          <button
+          <Button
+            size="lg"
             onClick={scrollToFeatures}
-            className="btn btn-primary btn-lg px-8 py-4 text-lg font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            className="px-8 py-4 text-lg font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
           >
             {t('hero.primaryAction', '开始探索')}
             <ChevronDownIcon className="w-5 h-5 ml-2" />
-          </button>
+          </Button>
 
-          <a
-            href="https://tauri.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-outline btn-lg px-8 py-4 text-lg font-medium hover:bg-base-200 transition-all duration-200"
-          >
-            {t('hero.secondaryAction', '查看文档')}
-          </a>
+          <Button variant="outline" size="lg" asChild>
+            <a
+              href="https://tauri.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 text-lg font-medium transition-all duration-200"
+            >
+              {t('hero.secondaryAction', '查看文档')}
+            </a>
+          </Button>
         </div>
 
         {/* 技术栈展示 */}

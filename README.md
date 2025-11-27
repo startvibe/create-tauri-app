@@ -18,8 +18,8 @@
 - 🚀 **Next.js 16.0.3** - 全栈 React 框架，使用 App Router
 - 📝 **TypeScript 5.8.3** - 类型安全的 JavaScript
 - 🎨 **Tailwind CSS v3** - 实用优先的 CSS 框架
-- 🌙 **深色模式** - 基于 DaisyUI 5.x 的主题切换功能
-- 🧩 **DaisyUI 5.x** - 美观的 UI 组件库
+- 🌙 **深色模式** - 基于 Next.js 的主题切换功能
+- 🧩 **shadcn/ui** - 现代、无障碍的UI组件库
 - 🔧 **Next.js 静态导出** - 适配 Tauri 桌面应用的构建模式
 - 📦 **pnpm** - 高效的包管理器
 - ✅ **ESLint + Prettier** - 代码质量和格式化
@@ -229,7 +229,7 @@ cd ../
 
 - **前端**: React 19, Next.js 16.0.3, TypeScript 5.8.3
 - **路由**: Next.js App Router（强制）
-- **样式**: Tailwind CSS v3, DaisyUI 5
+- **样式**: Tailwind CSS v3, shadcn/ui
 - **后端**: Tauri 2.0, Rust 1.89
 - **构建**: Next.js 静态导出（`output: 'export'`）
 - **工具**: pnpm, ESLint, Prettier, Husky

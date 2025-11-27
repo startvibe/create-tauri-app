@@ -125,6 +125,6 @@ _Example of marking unclear requirements:_
 - **CC-007**: 主项目功能必须专注于 npx CLI 工具，模板项目专注于 Tauri 2 + Next.js 应用模板
 - **CC-008**: 必须遵循 SDD (Specification Driven Development) 和测试驱动开发
 - **CC-009**: 主项目开发必须在根目录进行，模板项目开发必须在 `template/` 目录内进行
-- **CC-010**: 模板项目技术栈必须符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + DaisyUI 5
+- **CC-010**: 模板项目技术栈必须符合 Tauri 2.0 + React 19 + Next.js 16.0.3 + Tailwind CSS + shadcn/ui
 - **CC-011**: 模板项目必须配置 Next.js 静态导出 (`output: 'export'`) 支持 Tauri 桌面应用
 - **CC-012**: 所有文档、代码注释、用户交互和技术讨论必须使用中文（专业术语和源代码除外）

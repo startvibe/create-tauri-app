@@ -3,6 +3,8 @@
 import { useTranslation } from '../i18n/provider'
 import { HeroSection } from './hero-section'
 import { FeaturesSection } from './features-section'
+import { Button } from '../../components/ui/button'
+import { Card, CardContent } from '../../components/ui/card'
 
 export function HomePage() {
   const { t } = useTranslation()
@@ -30,55 +32,50 @@ export function HomePage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="card bg-base-100 shadow-lg">
-                <div className="card-body text-center">
+              <Card className="shadow-lg">
+                <CardContent className="text-center pt-6">
                   <div className="text-4xl mb-4">🚀</div>
-                  <h3 className="card-title justify-center text-lg mb-2">
+                  <h3 className="font-semibold text-lg mb-2 text-center">
                     {t('home.ready.step1', '步骤 1')}
                   </h3>
-                  <p className="text-base-content/70 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     {t('home.ready.step1Desc', '克隆或下载这个模板项目')}
                   </p>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
 
-              <div className="card bg-base-100 shadow-lg">
-                <div className="card-body text-center">
+              <Card className="shadow-lg">
+                <CardContent className="text-center pt-6">
                   <div className="text-4xl mb-4">⚙️</div>
-                  <h3 className="card-title justify-center text-lg mb-2">
+                  <h3 className="font-semibold text-lg mb-2 text-center">
                     {t('home.ready.step2', '步骤 2')}
                   </h3>
-                  <p className="text-base-content/70 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     {t('home.ready.step2Desc', '运行 pnpm install 安装依赖')}
                   </p>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
 
-              <div className="card bg-base-100 shadow-lg">
-                <div className="card-body text-center">
+              <Card className="shadow-lg">
+                <CardContent className="text-center pt-6">
                   <div className="text-4xl mb-4">✨</div>
-                  <h3 className="card-title justify-center text-lg mb-2">
+                  <h3 className="font-semibold text-lg mb-2 text-center">
                     {t('home.ready.step3', '步骤 3')}
                   </h3>
-                  <p className="text-base-content/70 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     {t('home.ready.step3Desc', '运行 pnpm tauri dev 开始开发')}
                   </p>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn btn-primary btn-lg">
-                {t('home.ready.getStarted', '立即开始')}
-              </button>
-              <a
-                href="https://tauri.app/v1/guides/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline btn-lg"
-              >
-                {t('home.ready.viewDocs', '查看文档')}
-              </a>
+              <Button size="lg">{t('home.ready.getStarted', '立即开始')}</Button>
+              <Button variant="outline" size="lg" asChild>
+                <a href="https://tauri.app/v1/guides/" target="_blank" rel="noopener noreferrer">
+                  {t('home.ready.viewDocs', '查看文档')}
+                </a>
+              </Button>
             </div>
           </div>
         </div>
